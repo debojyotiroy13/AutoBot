@@ -1,0 +1,47 @@
+<!--
+ Copyright (c) 2014, 2021, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-padding">
+  <div class="container">
+    <!-- <button class="btn" type="button" onclick="return tapToSpeak();">Tap to Speak</button> -->
+    <!-- <button class="btn" type="button" onclick="return speakResponse();">Read Answer</button> -->
+    <div class="discussions">
+      <oj-bind-if test="[[discussionArray().length > 0]]" >
+        <oj-list-view
+            style="scroll-behavior: smooth; height: 25em;"
+            id="listview"
+            aria-label="simple list"
+            data="[[questionDataProvider]]"
+            class="oj-listview-item-padding-off">
+            <template slot="itemTemplate" data-oj-as="item">
+              <oj-list-item-layout>
+                <span class="oj-typography-body-md oj-text-color-primary">
+                  <oj-bind-text value="[[item.data.user]]"></oj-bind-text>
+                </span>
+                <oj-avatar slot="leading" size="xs" initials="[[item.data.type]]"></oj-avatar>
+                <span slot="secondary" class="oj-typography-body-sm oj-text-color-secondary">
+                  <oj-bind-text value="[[item.data.value]]"></oj-bind-text>
+                </span>
+              </oj-list-item-layout>
+            </template>
+          </oj-list-view>
+        </oj-bind-if>
+    </div>
+    <div class="questions">
+      <div class="row">
+        <div class="col">
+          <oj-input-text id="jobToSearch" 
+              value="{{questionText}}"
+              data-bind="event: {keypress: keyOnEnter}"
+              label-hint="Chat..">
+            <oj-button id="clearTenant" slot="end" on-click='[[sendChat]]' display='icons' chroming='half'>
+              <span slot='startIcon' class='oj-ux-ico-send'></span>
+            </oj-button>
+          </oj-input-text>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
